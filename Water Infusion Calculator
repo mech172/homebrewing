@@ -1,0 +1,14 @@
+"""Water Infusion Calculator"""
+"""This is a calculator for the amount and temp of water to add"""
+"""for multiple step mash infusions to raise your mash temp."""
+
+target_temp = float(input("What is your target mash temp? --> "))
+init_temp = float(input("What is your current mash temp? --> "))
+pounds_of_grain = float(input("How many pounds of grain are you mashing? --> "))
+water_in_mash = float(input("How much water is in your mash? --> "))
+
+infusion_water = (target_temp - init_temp) * (.2 * pounds_of_grain + water_in_mash) / (215 - target_temp)
+
+print ("You need to add", infusion_water, " quarts of boiling water.")
+
+input("Press enter to exit.")
