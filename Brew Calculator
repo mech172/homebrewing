@@ -1,0 +1,47 @@
+"""Brew Calculator"""
+"""This is a simple calculator to figure what the initial temp of your"""
+"""strike water should be along with how much water to heat."""
+""""Also calculates sparge volume."""
+"""Assumptions are made as to system grain apsorption loss, loss to trub"""
+"""and mash tun loss. These may need to be adjusted for your system."""
+
+r = float(input("What is your grain to water ratio? -->  " ))
+T2 = float(input("What is your target mash temp? -->  "))
+T1 = float(input("What is the current grain temp? -->  ")) 
+G = float(input("How many pounds of grain are you using? -->  "))
+PctEvap = .05
+PctShrink = .04
+MinutesBoiled = float(input("How many minutes is your boil? -->  "))
+BatchVolume = float(input("What is your batch volume? -->  "))
+LossToTrub = .5
+MashTunLoss = .5
+
+GrainAbsorptionLoss = G * .2
+
+MashWaterVolume = (r * G) / 4
+
+StrikeTemp = (.2 / r) * (T2 - T1) + T2
+
+EvaporationLoss = 1 - (PctEvap * (MinutesBoiled / 60))
+
+ShrinkageFactor = 1 - PctShrink
+
+KettleLoss = ((BatchVolume + LossToTrub) / ShrinkageFactor) / EvaporationLoss
+
+TotalWaterNeeded = KettleLoss + MashTunLoss + GrainAbsorptionLoss
+
+SpargeWaterVolume = TotalWaterNeeded - MashWaterVolume
+
+print ("")
+print ("Mash water volume is ", MashWaterVolume)
+print ("")
+print ("Strike temp is ", StrikeTemp)
+print ("")
+print ("Total water needed is ", TotalWaterNeeded)
+print ("")
+print ("Sparge volume is ", SpargeWaterVolume)
+print ("")
+input("Press enter to exit.")
+
+
+
