@@ -1,0 +1,27 @@
+"""Dry Malt Extract Infusion Calculator"""
+"""This is a calculator for mixing dry malt extract with your wort"""
+"""to reach a desired gravity."""
+
+desired_reading = float(input("what is your desired gravity? -->  " ))
+desired_volume = float(input("what is your desired volume? -->  "))
+current_reading = float(input("what is your current gravity? --> " ))
+wort_temp = float(input("what is the temp of your wort? --> "))
+correction = 1.313454 - (0.132474 * wort_temp) + (0.002057793 * wort_temp ** 2) - (0.000002627634 * wort_temp ** 3)
+corrected_reading = current_reading + (correction + 0.001)
+current_volume = float(input("what is your current volume? --> "))
+
+
+gravity_needed = (desired_reading * desired_volume) - (corrected_reading * current_volume)
+dry_malt_conversion = gravity_needed / 44
+
+print (" ")
+print (desired_reading * desired_volume)
+print (corrected_reading * current_volume)
+print ("You need ", gravity_needed, "gravity points.")
+print(" ")
+print ("You need to add ", dry_malt_conversion, "lbs of dry malt extract.")
+print (" ")
+input("Press enter to exit.")
+
+
+
